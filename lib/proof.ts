@@ -1,6 +1,6 @@
 /**
  * "Proof of Automation" — real, showable artifacts from Nisha's personal
- * projects (github.com/Nisha7001). Code excerpts are lightly trimmed for
+ * projects (github.com/Nisha8393). Code excerpts are lightly trimmed for
  * display; commentary explains the design decision behind each.
  */
 
@@ -17,16 +17,16 @@ export const repos: Repo[] = [
     name: "Automation-Exercise",
     description:
       "Playwright UI suite — 120 tests (smoke · regression · e2e) against a live demo storefront. Accessibility-first Page Objects, dual-scope fixtures, tag-driven suites, a custom Excel reporter, and a GitHub Actions pipeline that runs nightly.",
-    url: "https://github.com/Nisha7001/Automation-Exercise",
+    url: "https://github.com/Nisha8393/Automation-Exercise",
     badge:
-      "https://github.com/Nisha7001/Automation-Exercise/actions/workflows/playwright.yml/badge.svg",
+      "https://github.com/Nisha8393/Automation-Exercise/actions/workflows/playwright.yml/badge.svg",
     meta: ["120 tests", "Playwright · JavaScript", "Nightly CI + report"],
   },
   {
     name: "Automation-ExerciseAPI",
     description:
       "Postman / Newman API regression — 38 requests covering all 14 documented endpoints with positive, negative and edge cases (400 / 404 / 405), a self-cleaning create→read→update→delete lifecycle, and secrets kept out of git via environment templating.",
-    url: "https://github.com/Nisha7001/Automation-ExerciseAPI",
+    url: "https://github.com/Nisha8393/Automation-ExerciseAPI",
     meta: ["38 requests", "Postman · Newman", "14 endpoints covered"],
   },
 ];

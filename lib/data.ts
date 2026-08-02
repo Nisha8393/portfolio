@@ -19,7 +19,7 @@ export const site = {
   resumeUrl: "/Nisha-Shrestha-Resume.pdf",
   socials: {
     linkedin: "https://www.linkedin.com/in/nisha-shrestha-76a638266/",
-    github: "https://github.com/Nisha7001",
+    github: "https://github.com/Nisha8393",
     email: "mailto:nishashrestha5470@gmail.com",
   },
   url: "https://nisha-shrestha.dev",
