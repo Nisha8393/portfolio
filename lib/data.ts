@@ -22,7 +22,7 @@ export const site = {
     github: "https://github.com/Nisha8393",
     email: "mailto:nishashrestha5470@gmail.com",
   },
-  url: "https://nisha-shrestha.dev",
+  url: "https://shresthanisha.netlify.app",
 } as const;
 
 export const nav = [
