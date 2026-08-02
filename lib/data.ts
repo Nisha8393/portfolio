@@ -14,8 +14,6 @@ export const site = {
     "ISTQB-certified QA analyst with 7+ years of experience building automation frameworks, API testing strategies, performance validation, and AI-driven quality practices across healthcare, SaaS, e-commerce, and enterprise platforms.",
   location: "Toronto, Canada",
   email: "nishashrestha5470@gmail.com",
-  phone: "416-722-8393",
-  phoneHref: "tel:+14167228393",
   resumeUrl: "/Nisha-Shrestha-Resume.pdf",
   socials: {
     linkedin: "https://www.linkedin.com/in/nisha-shrestha-76a638266/",

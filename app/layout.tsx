@@ -86,7 +86,6 @@ const jsonLd = {
   jobTitle: "Senior Software QA Analyst",
   description,
   email: site.email,
-  telephone: site.phone,
   address: { "@type": "PostalAddress", addressLocality: "Toronto", addressCountry: "CA" },
   url: site.url,
   sameAs: [site.socials.linkedin, site.socials.github],

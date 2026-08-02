@@ -8,7 +8,6 @@ import {
   Linkedin,
   Loader2,
   Mail,
-  Phone,
   Send,
   X,
 } from "lucide-react";
@@ -139,16 +138,11 @@ export function ContactModal() {
             </p>
 
             {/* Quick channels */}
-            <div className="mt-5 grid grid-cols-2 gap-2">
+            <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-3">
               <ChannelLink
                 href={site.socials.email}
                 icon={<Mail className="h-4 w-4" />}
                 label="Email"
-              />
-              <ChannelLink
-                href={site.phoneHref}
-                icon={<Phone className="h-4 w-4" />}
-                label="Phone"
               />
               <ChannelLink
                 href={site.socials.linkedin}
