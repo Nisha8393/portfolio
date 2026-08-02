@@ -1,9 +1,10 @@
 # Netlify build config for Next.js.
-# Declaring the plugin explicitly guarantees Netlify installs & runs the
-# Next.js runtime (SSR routing, API routes, redirects) instead of relying
-# on auto-detection — which fixes root "Page not found" errors.
+# publish = ".next" is required by @netlify/plugin-nextjs (the default of the
+# repo root triggers a plugin error). The plugin applies the Next.js runtime
+# (SSR routing, API routes, redirects).
 [build]
   command = "npm run build"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "20"
