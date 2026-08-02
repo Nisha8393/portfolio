@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f5ead8;
+  --foreground: #201e1d;
+}
+
+.dark {
+  --background: #04140c;
+  --foreground: #e8f0ea;
+}
+
+@layer base {
+  * {
+    @apply border-slate-200 dark:border-white/10;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply text-slate-900;
+    background-color: #f5ead8;
+    background-image:
+      radial-gradient(
+        1100px 620px at 50% -8%,
+        rgba(139, 189, 75, 0.14),
+        transparent 60%
+      ),
+      radial-gradient(
+        900px 520px at 90% 2%,
+        rgba(198, 113, 57, 0.06),
+        transparent 58%
+      );
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  /* Lightest-green → darkest-green fade (dark mode). No black. */
+  .dark body {
+    background-color: #04140c;
+    background-image:
+      radial-gradient(
+        1100px 640px at 50% -6%,
+        rgba(52, 211, 153, 0.2),
+        transparent 60%
+      ),
+      radial-gradient(
+        920px 520px at 90% 6%,
+        rgba(16, 185, 129, 0.12),
+        transparent 58%
+      ),
+      linear-gradient(
+        180deg,
+        #0d4029 0%,
+        #0a3220 24%,
+        #082518 50%,
+        #061c11 76%,
+        #04140c 100%
+      );
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  /* Offset anchor targets so sticky nav doesn't cover section headings */
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  ::selection {
+    @apply bg-brand-500/25 text-slate-900 dark:text-white;
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply mx-auto w-full max-w-6xl px-6 lg:px-8;
+  }
+
+  .section-pad {
+    @apply py-16 sm:py-24;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium uppercase tracking-[0.14em] text-slate-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-400;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-ink-950 disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-600 text-white shadow-glow hover:bg-brand-500 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply btn border border-slate-200 bg-white text-slate-800 hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:text-slate-100 dark:hover:bg-white/10;
+  }
+
+  .btn-ghost {
+    @apply btn text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white;
+  }
+
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white shadow-card transition-all duration-300 dark:border-white/10 dark:bg-white/[0.03] dark:shadow-card-dark;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-300;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 116, 139, 0.35);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 116, 139, 0.6);
+  background-clip: content-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
