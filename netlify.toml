@@ -1,0 +1,7 @@
+# Netlify build config. Netlify auto-detects Next.js and applies its
+# Next.js runtime (SSR + API routes) — no extra plugin config needed here.
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
