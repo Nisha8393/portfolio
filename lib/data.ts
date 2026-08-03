@@ -5,9 +5,8 @@
 
 export const site = {
   name: "Nisha Shrestha",
-  role: "Senior Software QA Analyst",
-  titleLine:
-    "Senior QA Analyst · Automation Engineer · AI Quality Engineer",
+  role: "Senior QA Analyst",
+  titleLine: "Senior QA Analyst · SDET · Test Automation",
   tagline:
     "Building reliable software through automation, intelligent testing strategies, and AI-powered quality engineering.",
   heroSubtext:

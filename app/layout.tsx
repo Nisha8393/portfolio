@@ -24,12 +24,12 @@ const mono = JetBrains_Mono({
 });
 
 const description =
-  "ISTQB-certified Senior QA Analyst & Automation Specialist with 7+ years building Playwright/Selenium frameworks, API & performance testing, CI/CD quality gates, and AI/LLM quality engineering.";
+  "ISTQB-certified Senior QA Analyst · SDET · Test Automation with 7+ years building Playwright/Selenium frameworks, API & performance testing, CI/CD quality gates, and AI/LLM quality engineering.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Senior QA Analyst & Automation Specialist`,
+    default: `${site.name} — Senior QA Analyst · SDET · Test Automation`,
     template: `%s — ${site.name}`,
   },
   description,
@@ -56,13 +56,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_CA",
     url: site.url,
-    title: `${site.name} — Senior QA Analyst & Automation Specialist`,
+    title: `${site.name} — Senior QA Analyst · SDET · Test Automation`,
     description,
     siteName: `${site.name} · Portfolio`,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Senior QA Analyst & Automation Specialist`,
+    title: `${site.name} — Senior QA Analyst · SDET · Test Automation`,
     description,
   },
   robots: {
@@ -83,7 +83,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: site.name,
-  jobTitle: "Senior Software QA Analyst",
+  jobTitle: "Senior QA Analyst",
   description,
   email: site.email,
   address: { "@type": "PostalAddress", addressLocality: "Toronto", addressCountry: "CA" },
