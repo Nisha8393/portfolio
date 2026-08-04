@@ -56,7 +56,7 @@ export function ProofOfAutomation() {
       <div className="container-px">
         <SectionHeading
           eyebrow="Proof of Automation"
-          title="Don't take my word for it — it's running"
+          title="Don't take my word for it, it's running"
           description="The employer work above can't be linked, so here's the proof from my own projects: real code, a live test report, a trace, and CI you can click into right now."
         />
 
@@ -263,7 +263,7 @@ function ArchitectureDiagram() {
       <DiagramBox
         icon={<Layers className="h-5 w-5" />}
         title="Shared fixtures · test data · generators"
-        sub="Auth, unique data per run, and Page Objects / API clients injected as fixtures — no test depends on another test's leftovers"
+        sub="Auth, unique data per run, and Page Objects / API clients injected as fixtures, no test depends on another test's leftovers"
       />
 
       <Connector />
@@ -287,7 +287,7 @@ function ArchitectureDiagram() {
       {/* Reports */}
       <DiagramBox
         icon={<FileBarChart className="h-5 w-5" />}
-        title="One report — HTML + custom Excel"
+        title="One report: HTML + custom Excel"
         sub="Traces & screenshots retained on failure; a stakeholder-friendly Excel summary with a pass/fail chart"
       />
 
@@ -296,7 +296,7 @@ function ArchitectureDiagram() {
       {/* CI */}
       <DiagramBox
         icon={<GitBranch className="h-5 w-5" />}
-        title="GitHub Actions — push · PR · nightly"
+        title="GitHub Actions: push · PR · nightly"
         sub="Browser caching, concurrency cancellation, secrets from the vault, artifacts uploaded every run"
         className="border-brand-500/40 bg-brand-500/[0.12] dark:bg-brand-500/15"
       />

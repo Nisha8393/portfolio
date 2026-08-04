@@ -29,8 +29,8 @@ const description =
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Senior QA Analyst · SDET · Test Automation`,
-    template: `%s — ${site.name}`,
+    default: `${site.name} | Senior QA Analyst · SDET · Test Automation`,
+    template: `%s | ${site.name}`,
   },
   description,
   keywords: [
@@ -56,13 +56,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_CA",
     url: site.url,
-    title: `${site.name} — Senior QA Analyst · SDET · Test Automation`,
+    title: `${site.name} | Senior QA Analyst · SDET · Test Automation`,
     description,
     siteName: `${site.name} · Portfolio`,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Senior QA Analyst · SDET · Test Automation`,
+    title: `${site.name} | Senior QA Analyst · SDET · Test Automation`,
     description,
   },
   robots: {

@@ -15,7 +15,7 @@ const markdownComponents = {
     </h4>
   ),
   p: ({ children }: { children?: React.ReactNode }) => (
-    <p className="mb-4 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300">
+    <p className="mb-4 text-[15px] leading-relaxed text-justify text-slate-600 dark:text-slate-300">
       {children}
     </p>
   ),
@@ -65,7 +65,7 @@ export function CaseStudies() {
         <SectionHeading
           eyebrow="Selected Work"
           title="Thrown In the Deep End"
-          description="Three situations I didn't plan for — and what I had to learn to get through them."
+          description="Three situations I didn't plan for, and what I had to learn to get through them."
         />
 
         <div className="mt-12 grid gap-5 md:grid-cols-3">

@@ -33,7 +33,7 @@ export function SkillCards() {
         <SectionHeading
           eyebrow="Skills"
           title="A full-stack quality toolkit"
-          description="From UI automation to API, performance, CI/CD, and AI evaluation — the tools I use to build confidence into every release."
+          description="From UI automation to API, performance, CI/CD, and AI evaluation, the tools I use to build confidence into every release."
         />
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

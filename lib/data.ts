@@ -1,6 +1,6 @@
 /**
  * Single source of truth for all portfolio content.
- * Update text, links, and metrics here — components read from this file.
+ * Update text, links, and metrics here, components read from this file.
  */
 
 export const site = {
@@ -33,14 +33,14 @@ export const nav = [
   { label: "Contact", href: "#contact" },
 ] as const;
 
-// "Run tests" banner in About — the full toolkit, streamed as a test run
+// "Run tests" banner in About, the full toolkit, streamed as a test run
 export type CandidateSpec = { file: string; checks: string[] };
 export const candidateSpecs: CandidateSpec[] = [
   {
     file: "automation.spec.ts",
     checks: [
-      "Playwright — UI + API, TypeScript",
-      "Selenium WebDriver — Python + Pytest",
+      "Playwright: UI + API, TypeScript",
+      "Selenium WebDriver: Python + Pytest",
       "Page objects, fixtures, data-driven runs",
       "Trace-based failure debugging",
     ],
@@ -48,27 +48,27 @@ export const candidateSpecs: CandidateSpec[] = [
   {
     file: "api-performance.spec.ts",
     checks: [
-      "Postman — collections, environments, test scripts",
-      "Newman CLI — headless suite execution",
+      "Postman: collections, environments, test scripts",
+      "Newman CLI: headless suite execution",
       "REST API testing",
-      "JMeter — load, throughput, response time",
+      "JMeter: load, throughput, response time",
     ],
   },
   {
     file: "pipeline.spec.ts",
     checks: [
-      "Jenkins — pipeline setup, credentials, thresholds",
-      "GitHub Actions — regression on every commit",
+      "Jenkins: pipeline setup, credentials, thresholds",
+      "GitHub Actions: regression on every commit",
       "Parallel execution + build-stability gating",
-      "Git — branching, repo structure",
+      "Git: branching, repo structure",
     ],
   },
   {
     file: "data.spec.ts",
     checks: [
-      "SQL / MySQL — business-rule validation",
+      "SQL / MySQL: business-rule validation",
       "Verifies stored values, not just displayed ones",
-      "EDI — claims file processing",
+      "EDI: claims file processing",
     ],
   },
   {
@@ -99,8 +99,8 @@ export const stats = [
 ] as const;
 
 export const aboutParagraphs = [
-  "I'm an automation-focused QA analyst who treats quality as an engineering discipline — not a final checkpoint. I design scalable automation frameworks, build API and backend validation strategies, run performance testing, and evaluate the quality of AI and LLM-powered systems.",
-  "I've built testing strategies, automation frameworks, release standards, and quality processes from the ground up — frequently establishing a team's testing foundation where none existed. I partner closely with engineering, product, and DevOps to raise release confidence and catch defects long before they reach production.",
+  "I'm an automation-focused QA analyst who treats quality as an engineering discipline, not a final checkpoint. I design scalable automation frameworks, build API and backend validation strategies, run performance testing, and evaluate the quality of AI and LLM-powered systems.",
+  "I've built testing strategies, automation frameworks, release standards, and quality processes from the ground up, frequently establishing a team's testing foundation where none existed. I partner closely with engineering, product, and DevOps to raise release confidence and catch defects long before they reach production.",
 ];
 
 export const aboutHighlights = [
@@ -129,7 +129,7 @@ export const experiences: Experience[] = [
     logo: "/logos/openscreen.svg",
     role: "Software QA Lead",
     location: "Toronto, Canada",
-    period: "Mar 2025 — Present",
+    period: "Mar 2025 – Present",
     current: true,
     stack: [
       "Playwright",
@@ -144,14 +144,14 @@ export const experiences: Experience[] = [
       "Claude Code / MCP",
     ],
     achievements: [
-      "Architected a hybrid Playwright Test (TypeScript) framework as the sole QA analyst — Page Object Model, custom fixtures, and parameterized tests — cutting regression on a QR-based asset-tracking SaaS platform from days to hours.",
-      "Extended API coverage into Playwright with APIRequestContext, so UI and API assertions run from a single suite with shared authentication state.",
-      "Own and continuously expand the Postman/Newman API regression suite — authentication, role-based permissions, workflow execution, asset lifecycle, and reporting across all three applications.",
+      "Architected a hybrid Playwright Test (TypeScript) framework as the sole QA analyst, using the Page Object Model, custom fixtures, and parameterized tests to cut regression on a QR-based asset-tracking SaaS platform from days to hours.",
+      "Extending API coverage into Playwright with APIRequestContext, so UI and API assertions run from a single suite with shared authentication state.",
+      "Own and continuously expand the Postman/Newman API regression suite: authentication, role-based permissions, workflow execution, asset lifecycle, and reporting across all three applications.",
       "Integrated every suite into Jenkins and GitHub Actions so each merge produces a quality signal, managing credentials, network access, and build-stability thresholds.",
       "Reduced post-release defect escapes and shortened resolution cycles by partnering with Product and Engineering on triage and fix validation, gating releases on defined quality criteria.",
       "Ran load and performance testing in Apache JMeter to validate scalability, throughput, and response times before enterprise onboarding.",
       "Applied GenAI tooling and MCP servers to generate test scripts, test data, and defect diagnostics, raising coverage output per sprint.",
-      "Established the company's first QA documentation standards — test strategy, defect reporting, and release-validation checklists — giving stakeholders clear release readiness.",
+      "Established the company's first QA documentation standards: test strategy, defect reporting, and release-validation checklists, giving stakeholders clear release readiness.",
     ],
   },
   {
@@ -159,7 +159,7 @@ export const experiences: Experience[] = [
     logo: "/logos/profound-impact.jpg",
     role: "QA Analyst",
     location: "Toronto, Canada",
-    period: "Aug 2024 — Mar 2025",
+    period: "Aug 2024 – Mar 2025",
     stack: [
       "Selenium",
       "Python",
@@ -173,7 +173,7 @@ export const experiences: Experience[] = [
     achievements: [
       "Built Selenium WebDriver (Python + Pytest) automation for an AI-driven grant-matching platform, covering ~60% of the regression suite and sharply cutting execution time.",
       "Reduced post-release defects by 25% through earlier, broader test coverage and a formalized defect lifecycle.",
-      "Evaluated AI matching output against manager-defined metrics for relevance, correctness, and ranking — flagging false positives to improve recommendation reliability.",
+      "Evaluated AI matching output against manager-defined metrics for relevance, correctness, and ranking, flagging false positives to improve recommendation reliability.",
       "Performed API testing with Postman, validating responses against MySQL to improve data accuracy across the matching pipeline.",
       "Stood up QA documentation, test repositories, and defect standards from the ground up, improving testability and risk coverage across Agile ceremonies.",
     ],
@@ -183,7 +183,7 @@ export const experiences: Experience[] = [
     logo: "/logos/cedar-gate.svg",
     role: "QA Engineer",
     location: "Greenwich, CT, USA (Remote)",
-    period: "Feb 2022 — May 2023",
+    period: "Feb 2022 – May 2023",
     stack: [
       "SQL",
       "EDI 837/835",
@@ -205,7 +205,7 @@ export const experiences: Experience[] = [
     logo: "/logos/daraz.png",
     role: "QA Analyst",
     location: "Nepal",
-    period: "Jan 2020 — Feb 2022",
+    period: "Jan 2020 – Feb 2022",
     stack: ["ERP", "E-commerce", "SQL", "UAT", "Regression", "E2E", "JIRA"],
     achievements: [
       "Performed UAT, regression, and end-to-end testing across 6+ ERP and e-commerce platforms in a high-transaction marketplace environment.",
@@ -217,7 +217,7 @@ export const experiences: Experience[] = [
     logo: "/logos/web-creation.png",
     role: "Business Analyst / QA",
     location: "Nepal",
-    period: "Jan 2018 — Dec 2019",
+    period: "Jan 2018 – Dec 2019",
     stack: [
       "UAT",
       "Requirements",
@@ -225,7 +225,7 @@ export const experiences: Experience[] = [
       "Test Documentation",
     ],
     achievements: [
-      "Performed UAT, impact analysis, and scope validation — reducing scope creep and aligning delivery with stakeholder goals.",
+      "Performed UAT, impact analysis, and scope validation, reducing scope creep and aligning delivery with stakeholder goals.",
     ],
   },
 ];
@@ -245,7 +245,7 @@ export const projects: Project[] = [
     title: "Playwright Automation Framework From Zero",
     tagline: "Framework architecture · UI + API · CI/CD",
     problem:
-      "No scalable automation framework existed. Regression was manual, slow, and inconsistent — limiting release velocity and confidence.",
+      "No scalable automation framework existed. Regression was manual, slow, and inconsistent, limiting release velocity and confidence.",
     approach: [
       "Designed the Playwright framework architecture from the ground up.",
       "Implemented UI automation with reusable page objects and fixtures.",
@@ -428,7 +428,7 @@ export type SoftSkill = {
   body: string;
 };
 
-// Soft skills that make QA effective — the judgment automation can't replace.
+// Soft skills that make QA effective, the judgment automation can't replace.
 export const softSkills: SoftSkill[] = [
   {
     icon: "searchCheck",
@@ -443,7 +443,7 @@ export const softSkills: SoftSkill[] = [
   {
     icon: "target",
     title: "Risk-Based Judgment",
-    body: "I test what hurts most if it breaks — not what's easiest to turn into a fast green check.",
+    body: "I test what hurts most if it breaks, not what's easiest to turn into a fast green check.",
   },
   {
     icon: "messagesSquare",
@@ -485,7 +485,7 @@ export const philosophy = {
     },
     {
       title: "Measure what matters",
-      body: "Coverage, defect escape rate, and release confidence — real signals over vanity metrics.",
+      body: "Coverage, defect escape rate, and release confidence: real signals over vanity metrics.",
     },
     {
       title: "Quality is a team sport",

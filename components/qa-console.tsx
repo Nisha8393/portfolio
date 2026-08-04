@@ -21,7 +21,7 @@ const logLines = [
 
 /**
  * Sophisticated QA engineering "console" used as the hero visual.
- * Pure code — no photo, no cartoon avatar.
+ * Pure code, no photo, no cartoon avatar.
  */
 export function QaConsole() {
   const reduce = useReducedMotion();

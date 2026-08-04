@@ -7,8 +7,8 @@ import { NextResponse } from "next/server";
  * The client (components/contact-section.tsx) gracefully falls back to a
  * `mailto:` link if this route is not fully wired up.
  *
- * To actually deliver email, plug in a provider inside the try block below —
- * e.g. Resend, SendGrid, Nodemailer, or a Formspree/Getform webhook — and read
+ * To actually deliver email, plug in a provider inside the try block below,
+ * e.g. Resend, SendGrid, Nodemailer, or a Formspree/Getform webhook, and read
  * the API key from an environment variable (never hard-code secrets):
  *
  *   const { Resend } = await import("resend");

@@ -1,5 +1,5 @@
 /**
- * "Proof of Automation" — real, showable artifacts from Nisha's personal
+ * "Proof of Automation": real, showable artifacts from Nisha's personal
  * projects (github.com/Nisha8393). Code excerpts are lightly trimmed for
  * display; commentary explains the design decision behind each.
  */
@@ -16,7 +16,7 @@ export const repos: Repo[] = [
   {
     name: "Automation-Exercise",
     description:
-      "Playwright UI suite — 120 tests (smoke · regression · e2e) against a live demo storefront. Accessibility-first Page Objects, dual-scope fixtures, tag-driven suites, a custom Excel reporter, and a GitHub Actions pipeline that runs nightly.",
+      "Playwright UI suite: 120 tests (smoke · regression · e2e) against a live demo storefront. Accessibility-first Page Objects, dual-scope fixtures, tag-driven suites, a custom Excel reporter, and a GitHub Actions pipeline that runs nightly.",
     url: "https://github.com/Nisha8393/Automation-Exercise",
     badge:
       "https://github.com/Nisha8393/Automation-Exercise/actions/workflows/playwright.yml/badge.svg",
@@ -25,7 +25,7 @@ export const repos: Repo[] = [
   {
     name: "Automation-ExerciseAPI",
     description:
-      "Postman / Newman API regression — 38 requests covering all 14 documented endpoints with positive, negative and edge cases (400 / 404 / 405), a self-cleaning create→read→update→delete lifecycle, and secrets kept out of git via environment templating.",
+      "Postman / Newman API regression: 38 requests covering all 14 documented endpoints with positive, negative and edge cases (400 / 404 / 405), a self-cleaning create→read→update→delete lifecycle, and secrets kept out of git via environment templating.",
     url: "https://github.com/Nisha8393/Automation-ExerciseAPI",
     meta: ["38 requests", "Postman · Newman", "14 endpoints covered"],
   },
@@ -52,7 +52,7 @@ export const snippets: Snippet[] = [
     // Logo alt text changes when logged in, so scope by class
     this.navMenu = this.header.getByRole("list");
 
-    // Parameterized factory — any nav link by its visible text
+    // Parameterized factory: any nav link by its visible text
     this.navLink = (text) =>
       this.navMenu.getByRole("link", { name: text });
 
@@ -65,14 +65,14 @@ export const snippets: Snippet[] = [
     await this.homeLink.click();
   }
 }`,
-    note: "Role/label locators scoped to a container, with parameterized factories for repeated patterns. CSS is a fallback used only where the DOM offers no accessible handle — and each fallback carries a comment saying why.",
+    note: "Role/label locators scoped to a container, with parameterized factories for repeated patterns. CSS is a fallback used only where the DOM offers no accessible handle, and each fallback carries a comment saying why.",
   },
   {
     title: "Two fixture scopes on purpose",
     filename: "fixtures/base.js",
     language: "javascript",
     code: `export const test = base.extend({
-  // ISOLATED (test-scoped) — for anything that mutates state
+  // ISOLATED (test-scoped): for anything that mutates state
   isolatedPage: async ({ browser }, use) => {
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -88,12 +88,12 @@ export const snippets: Snippet[] = [
     await context.close();
   },
 
-  // Every Page Object injected — specs never new() anything
+  // Every Page Object injected: specs never new() anything
   header: async ({ isolatedPage }, use) => {
     await use(new HeaderSection(isolatedPage));
   },
 
-  // SHARED (worker-scoped) — read-only smoke checks reuse one page
+  // SHARED (worker-scoped): read-only smoke checks reuse one page
   sharedPage: [async ({ sharedContext }, use) => {
     /* ... */
   }, { scope: "worker" }],
@@ -116,7 +116,7 @@ pm.test("Returned email matches queried email", function () {
   pm.expect(body.user.email)
     .to.eql(pm.environment.get("dynamic_email"));
 });`,
-    note: "A per-run unique email drives a create→read→update→delete chain, so every run is self-cleaning on a shared public API. Downstream requests assert against values captured upstream — real chained verification, not isolated 200-checks.",
+    note: "A per-run unique email drives a create→read→update→delete chain, so every run is self-cleaning on a shared public API. Downstream requests assert against values captured upstream, real chained verification, not isolated 200-checks.",
   },
 ];
 
@@ -133,7 +133,7 @@ export const artifacts: ProofArtifact[] = [
     kind: "report",
     title: "Live Playwright HTML report",
     caption:
-      "The real, clickable test report — browse every suite, timing, and result. Green wall with one honest red.",
+      "The real, clickable test report: browse every suite, timing, and result. Green wall with one honest red.",
     href: "/proof/playwright-report.html",
     src: "/proof/report-one-red.png",
   },
@@ -141,7 +141,7 @@ export const artifacts: ProofArtifact[] = [
     kind: "video",
     title: "The e2e purchase flow, running headed",
     caption:
-      "The full end-to-end journey — login → add to cart → checkout → order → downloadable invoice — driving a real browser.",
+      "The full end-to-end journey: login → add to cart → checkout → order → downloadable invoice, driving a real browser.",
     src: "/proof/trace-demo.mov",
   },
 ];

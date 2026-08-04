@@ -17,7 +17,7 @@ export function About() {
         <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1fr]">
           {/* Bio */}
           <div>
-            <div className="space-y-5 text-base leading-relaxed text-slate-600 dark:text-slate-300">
+            <div className="space-y-5 text-base leading-relaxed text-justify text-slate-600 dark:text-slate-300">
               {aboutParagraphs.map((p, i) => (
                 <Reveal key={i} delay={i * 0.05}>
                   <p>{p}</p>
@@ -25,7 +25,7 @@ export function About() {
               ))}
             </div>
 
-            {/* AI in my daily workflow — now in the main text column */}
+            {/* AI in my daily workflow, now in the main text column */}
             <Reveal delay={0.1}>
               <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 dark:border-white/10 dark:bg-white/[0.02]">
                 <div className="flex items-center gap-2.5">
@@ -36,12 +36,12 @@ export function About() {
                     AI in my daily workflow
                   </h3>
                 </div>
-                <p className="mt-4 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300">
-                  I use Claude and AI tools every day — turning manual cases into
+                <p className="mt-4 text-[15px] leading-relaxed text-justify text-slate-600 dark:text-slate-300">
+                  I use Claude and AI tools every day, turning manual cases into
                   Playwright suites, scaffolding API and UI checks, and generating
                   test data. But I treat AI output as a first draft, not the final
                   word: I supervise, review, and revise everything before it ships.
-                  It keeps me current with the industry — while quality stays a
+                  It keeps me current with the industry, while quality stays a
                   human call.
                 </p>
               </div>

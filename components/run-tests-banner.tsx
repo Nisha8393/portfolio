@@ -20,7 +20,7 @@ export function RunTestsBanner() {
   const [status, setStatus] = useState<Status>("idle");
   const [count, setCount] = useState(0);
 
-  // Drive the stream once running (no auto-start — the user clicks Run)
+  // Drive the stream once running (no auto-start, the user clicks Run)
   useEffect(() => {
     if (status !== "running") return;
     if (reduce) {
@@ -77,7 +77,7 @@ export function RunTestsBanner() {
             Run tests
           </button>
           <p className="mx-auto mt-4 max-w-[15rem] text-xs leading-relaxed text-slate-500">
-            Run the suite to load my toolkit — every passing check is a skill.
+            Run the suite to load my toolkit. Every passing check is a skill.
           </p>
         </div>
       ) : (

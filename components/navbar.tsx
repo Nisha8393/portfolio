@@ -49,7 +49,7 @@ export function Navbar() {
         <a
           href="#home"
           className="group flex items-center gap-2.5"
-          aria-label="Nisha Shrestha — home"
+          aria-label="Nisha Shrestha, home"
         >
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white shadow-glow">
             <ShieldCheck className="h-5 w-5" />

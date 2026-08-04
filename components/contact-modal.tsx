@@ -15,7 +15,7 @@ import { site } from "@/lib/data";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-// Public Web3Forms access key (safe to expose — it only routes to the inbox).
+// Public Web3Forms access key (safe to expose, it only routes to the inbox).
 // Set NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY in .env.local, then rebuild.
 const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
@@ -89,7 +89,7 @@ export function ContactModal() {
 
     // Fallback: open the visitor's mail client pre-filled.
     const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+    const body = encodeURIComponent(`${message}\n\n- ${name} (${email})`);
     window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
     setUsedFallback(true);
     setStatus("sent");
@@ -165,8 +165,8 @@ export function ContactModal() {
                 </span>
                 <h4 className="mt-3 font-display text-base font-bold text-slate-900 dark:text-white">
                   {usedFallback
-                    ? "Thanks — your message is on its way!"
-                    : "Thanks — your message landed in my inbox!"}
+                    ? "Thanks, your message is on its way!"
+                    : "Thanks, your message landed in my inbox!"}
                 </h4>
                 <p className="mt-1.5 max-w-xs text-sm text-slate-500 dark:text-slate-400">
                   {usedFallback

@@ -17,7 +17,7 @@ export function ExperienceTimeline() {
         <SectionHeading
           eyebrow="Experience"
           title="A track record of owning quality"
-          description="From sole-QA startups to enterprise healthcare — building the testing systems that let teams ship with confidence."
+          description="From sole-QA startups to enterprise healthcare, building the testing systems that let teams ship with confidence."
         />
 
         {/* Desktop: tabbed timeline */}
