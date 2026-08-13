@@ -62,7 +62,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.05 }}
               className="mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-[3.4rem]"
             >
-              Senior QA Analyst · SDET ·{" "}
+              Senior QA Engineer ·{" "}
               <span className="bg-gradient-to-r from-brand-600 to-glow bg-clip-text text-transparent dark:from-brand-400 dark:to-glow">
                 Test Automation
               </span>

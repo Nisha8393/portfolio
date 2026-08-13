@@ -2,7 +2,7 @@
   "name": "nisha-shrestha-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Premium personal portfolio for Nisha Shrestha — Senior Software QA Analyst & Automation Engineer.",
+  "description": "Premium personal portfolio for Nisha Shrestha — Senior Software QA Engineer.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

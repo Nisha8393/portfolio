@@ -5,12 +5,12 @@
 
 export const site = {
   name: "Nisha Shrestha",
-  role: "Senior QA Analyst",
-  titleLine: "Senior QA Analyst · SDET · Test Automation",
+  role: "Senior QA Engineer",
+  titleLine: "Senior QA Engineer · Test Automation",
   tagline:
     "Building reliable software through automation, intelligent testing strategies, and AI-powered quality engineering.",
   heroSubtext:
-    "ISTQB-certified QA analyst with 7+ years of experience building automation frameworks, API testing strategies, performance validation, and AI-driven quality practices across healthcare, SaaS, e-commerce, and enterprise platforms.",
+    "ISTQB-certified QA engineer with 7+ years of experience building automation frameworks, API testing strategies, performance validation, and AI-driven quality practices across healthcare, SaaS, e-commerce, and enterprise platforms.",
   location: "Toronto, Canada",
   email: "nishashrestha5470@gmail.com",
   resumeUrl: "/Nisha-Shrestha-Resume.pdf",
@@ -99,7 +99,7 @@ export const stats = [
 ] as const;
 
 export const aboutParagraphs = [
-  "I'm an automation-focused QA analyst who treats quality as an engineering discipline, not a final checkpoint. I design scalable automation frameworks, build API and backend validation strategies, run performance testing, and evaluate the quality of AI and LLM-powered systems.",
+  "I'm an automation-focused QA engineer who treats quality as an engineering discipline, not a final checkpoint. I design scalable automation frameworks, build API and backend validation strategies, run performance testing, and evaluate the quality of AI and LLM-powered systems.",
   "I've built testing strategies, automation frameworks, release standards, and quality processes from the ground up, frequently establishing a team's testing foundation where none existed. I partner closely with engineering, product, and DevOps to raise release confidence and catch defects long before they reach production.",
 ];
 
@@ -144,11 +144,10 @@ export const experiences: Experience[] = [
       "Claude Code / MCP",
     ],
     achievements: [
-      "Architected a hybrid Playwright Test (TypeScript) framework as the sole QA analyst, using the Page Object Model, custom fixtures, and parameterized tests to cut regression on a QR-based asset-tracking SaaS platform from days to hours.",
-      "Extending API coverage into Playwright with APIRequestContext, so UI and API assertions run from a single suite with shared authentication state.",
+      "Architected a hybrid Playwright Test (TypeScript) framework as the only QA engineer for UI and API coverage, using the Page Object Model, accessibility-first locators, custom fixtures, APIRequestContext, and parameterized tests, cutting regression across healthcare and regulated enterprise SaaS applications including QR-based asset tracking and workflow platforms.",
       "Own and continuously expand the Postman/Newman API regression suite: authentication, role-based permissions, workflow execution, asset lifecycle, and reporting across all three applications.",
       "Integrated every suite into Jenkins and GitHub Actions so each merge produces a quality signal, managing credentials, network access, and build-stability thresholds.",
-      "Reduced post-release defect escapes and shortened resolution cycles by partnering with Product and Engineering on triage and fix validation, gating releases on defined quality criteria.",
+      "Reduced post-release defect escapes and shortened resolution cycles by triaging failures through AWS CloudWatch to separate environment issues from real defects before escalating, and gating releases on defined quality criteria.",
       "Ran load and performance testing in Apache JMeter to validate scalability, throughput, and response times before enterprise onboarding.",
       "Applied GenAI tooling and MCP servers to generate test scripts, test data, and defect diagnostics, raising coverage output per sprint.",
       "Established the company's first QA documentation standards: test strategy, defect reporting, and release-validation checklists, giving stakeholders clear release readiness.",
@@ -157,7 +156,7 @@ export const experiences: Experience[] = [
   {
     company: "Profound Impact Corp.",
     logo: "/logos/profound-impact.jpg",
-    role: "QA Analyst",
+    role: "Software QA Engineer",
     location: "Toronto, Canada",
     period: "Aug 2024 – Mar 2025",
     stack: [
@@ -181,7 +180,7 @@ export const experiences: Experience[] = [
   {
     company: "Cedar Gate Technologies",
     logo: "/logos/cedar-gate.svg",
-    role: "QA Engineer",
+    role: "Software QA Engineer",
     location: "Greenwich, CT, USA (Remote)",
     period: "Feb 2022 – May 2023",
     stack: [
@@ -194,10 +193,10 @@ export const experiences: Experience[] = [
       "Agile/Scrum",
     ],
     achievements: [
-      "Ensured regulatory compliance across insurance workflows and EDI (837/835) processing, validating claims-calculation and payment accuracy against complex business rules using SQL.",
-      "Automated 65% of the smoke suite using an internal browser-based automation platform with XPath-based element location.",
+      "Tested healthcare and health insurance applications handling sensitive patient data, validating claims, payment, and member workflows against complex business rules and US healthcare regulation using SQL, including EDI 837/835 processing.",
+      "Automated smoke tests on an internal browser-based automation platform with XPath-based element location, contributing to 65% smoke coverage across the QA team.",
       "Mentored junior QA engineers and led team test execution in the team lead's absence, keeping delivery and quality on track.",
-      "Authored test requirements from business rules and system architecture, feeding risk assessment and release planning.",
+      "Created test requirements from business rules and system architecture, feeding risk assessment and release planning.",
     ],
   },
   {
