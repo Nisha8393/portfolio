@@ -78,7 +78,7 @@ The honest answer for how that fits is that AI absorbed the mechanical share. Sc
     company: "Profound Impact Corp.",
     logo: "/logos/profound-impact.jpg",
     context: "AI grant-matching platform",
-    period: "Aug 2024 – Mar 2025",
+    period: "Jun 2024 – Mar 2025",
     stack: ["Selenium (Python + Pytest)", "Postman", "MySQL", "JIRA"],
     title: "How Do You Test Something That Has No Right Answer?",
     hook: "A recommendation engine has no expected result: a grant match isn't right or wrong, it's more or less relevant. I had to figure out how to test a judgment call rigorously, and treat structured human evaluation as a method rather than a fallback.",

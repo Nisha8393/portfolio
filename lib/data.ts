@@ -158,7 +158,7 @@ export const experiences: Experience[] = [
     logo: "/logos/profound-impact.jpg",
     role: "Software QA Engineer",
     location: "Toronto, Canada",
-    period: "Aug 2024 – Mar 2025",
+    period: "Jun 2024 – Mar 2025",
     stack: [
       "Selenium",
       "Python",
