@@ -55,9 +55,9 @@ export function ProofOfAutomation() {
     <section id="proof" className="section-pad">
       <div className="container-px">
         <SectionHeading
-          eyebrow="Proof of Automation"
-          title="Don't take my word for it, it's running"
-          description="The employer work above can't be linked, so here's the proof from my own projects: real code, a live test report, a trace, and CI you can click into right now."
+          eyebrow="A working demo"
+          title="The framework, running live"
+          description="The employer work above can't be linked, so here's a small demo from my own projects: real code, a live test report, a trace, and CI you can click into. It's deliberately scaled down; my production frameworks go further."
         />
 
         {/* ---- Live repos ---- */}
