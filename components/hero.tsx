@@ -64,7 +64,7 @@ export function Hero() {
             >
               Senior QA Engineer ·{" "}
               <span className="bg-gradient-to-r from-brand-600 to-glow bg-clip-text text-transparent dark:from-brand-400 dark:to-glow">
-                Test Automation
+                Test Automation · AI Quality Engineering
               </span>
             </motion.h1>
 

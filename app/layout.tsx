@@ -24,12 +24,12 @@ const mono = JetBrains_Mono({
 });
 
 const description =
-  "ISTQB-certified Senior QA Engineer · Test Automation with 7+ years building Playwright/Selenium frameworks, API & performance testing, CI/CD quality gates, and AI/LLM quality engineering.";
+  "ISTQB-certified Senior QA Engineer · Test Automation · AI Quality Engineering with 7+ years building Playwright/Selenium frameworks, API & performance testing, CI/CD quality gates, and AI/LLM quality engineering.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | Senior QA Engineer · Test Automation`,
+    default: `${site.name} | Senior QA Engineer · Test Automation · AI Quality Engineering`,
     template: `%s | ${site.name}`,
   },
   description,
@@ -56,13 +56,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_CA",
     url: site.url,
-    title: `${site.name} | Senior QA Engineer · Test Automation`,
+    title: `${site.name} | Senior QA Engineer · Test Automation · AI Quality Engineering`,
     description,
     siteName: `${site.name} · Portfolio`,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} | Senior QA Engineer · Test Automation`,
+    title: `${site.name} | Senior QA Engineer · Test Automation · AI Quality Engineering`,
     description,
   },
   robots: {

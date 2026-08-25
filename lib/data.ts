@@ -6,7 +6,7 @@
 export const site = {
   name: "Nisha Shrestha",
   role: "Senior QA Engineer",
-  titleLine: "Senior QA Engineer · Test Automation",
+  titleLine: "Senior QA Engineer · Test Automation · AI Quality Engineering",
   tagline:
     "Building reliable software through automation, intelligent testing strategies, and AI-powered quality engineering.",
   heroSubtext:
@@ -190,7 +190,7 @@ export const experiences: Experience[] = [
       "XPath",
       "In-house Automation",
       "JIRA",
-      "TestRail",
+      "Zephyr",
       "Agile/Scrum",
     ],
     achievements: [
