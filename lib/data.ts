@@ -15,7 +15,7 @@ export const site = {
   email: "nishashrestha5470@gmail.com",
   resumeUrl: "/Nisha-Shrestha-Resume.pdf",
   socials: {
-    linkedin: "https://www.linkedin.com/in/nisha-shrestha-76a638266/",
+    linkedin: "https://www.linkedin.com/in/shrestha-nisha/",
     github: "https://github.com/Nisha8393",
     email: "mailto:nishashrestha5470@gmail.com",
   },
@@ -144,13 +144,14 @@ export const experiences: Experience[] = [
       "Claude Code / MCP",
     ],
     achievements: [
-      "Architected a hybrid Playwright Test (TypeScript) framework as the only QA engineer for UI and API coverage, using the Page Object Model, accessibility-first locators, custom fixtures, APIRequestContext, and parameterized tests, cutting regression across healthcare and regulated enterprise SaaS applications including QR-based asset tracking and workflow platforms.",
-      "Own and continuously expand the Postman/Newman API regression suite: authentication, role-based permissions, workflow execution, asset lifecycle, and reporting across all three applications.",
-      "Integrated every suite into Jenkins and GitHub Actions so each merge produces a quality signal, managing credentials, network access, and build-stability thresholds.",
-      "Reduced post-release defect escapes and shortened resolution cycles by triaging failures through AWS CloudWatch to separate environment issues from real defects before escalating, and gating releases on defined quality criteria.",
-      "Ran load and performance testing in Apache JMeter to validate scalability, throughput, and response times before enterprise onboarding.",
-      "Applied GenAI tooling and MCP servers to generate test scripts, test data, and defect diagnostics, raising coverage output per sprint.",
-      "Established the company's first QA documentation standards: test strategy, defect reporting, and release-validation checklists, giving stakeholders clear release readiness.",
+      "Inherited sole ownership of quality for a three-application SaaS platform, taking on release sign-off for healthcare and regulated enterprise SaaS applications including QR-based asset tracking and workflow platforms.",
+      "Architected the company's first automated test infrastructure for both UI and API from zero: a hybrid Playwright framework using the Page Object Model, accessibility-first locators, custom fixtures, APIRequestContext, and parameterized test data, replacing a multi-day manual regression cycle that previously consumed the full QA team.",
+      "Expanded and hardened the Postman/Newman API suite into full regression coverage across authentication, role-based permissions, workflow execution, asset lifecycle, and reporting for all three applications, and brought it under automated CI execution.",
+      "Embedded all suites into Jenkins and GitHub Actions so every merge produces a pass/fail quality gate, managing credentials, environment access, and build-stability thresholds.",
+      "Eliminated engineering time lost to false escalations by triaging failures through AWS CloudWatch to separate environment instability from genuine defects before raising them.",
+      "Validated scalability, throughput, and response times in Apache JMeter ahead of enterprise customer onboarding, surfacing performance limits before they reached production.",
+      "Expanded coverage per sprint using Claude Code and MCP servers to generate test scripts, test data, and defect diagnostics, treating AI output as a reviewed first draft rather than a shipped result.",
+      "Authored the company's first QA standards covering test strategy, defect reporting, and release-validation checklists, now the formal release gate across all products.",
     ],
   },
   {
@@ -170,11 +171,11 @@ export const experiences: Experience[] = [
       "Agile/Scrum",
     ],
     achievements: [
-      "Built Selenium WebDriver (Python + Pytest) automation for an AI-driven grant-matching platform, covering ~60% of the regression suite and sharply cutting execution time.",
-      "Reduced post-release defects by 25% through earlier, broader test coverage and a formalized defect lifecycle.",
-      "Evaluated AI matching output against manager-defined metrics for relevance, correctness, and ranking, flagging false positives to improve recommendation reliability.",
-      "Performed API testing with Postman, validating responses against MySQL to improve data accuracy across the matching pipeline.",
-      "Stood up QA documentation, test repositories, and defect standards from the ground up, improving testability and risk coverage across Agile ceremonies.",
+      "Designed a structured evaluation methodology for an AI grant-matching engine that had no deterministic correct answer, scoring outputs against defined relevance, correctness, and ranking criteria and flagging false positives that degraded recommendation quality.",
+      "Automated ~60% of the regression suite in Selenium WebDriver (Python + Pytest), converting the platform's longest manual verification cycle into a repeatable automated run.",
+      "Reduced post-release defects 25% by shifting coverage earlier and formalizing the defect lifecycle from report through verification.",
+      "Caught data-integrity mismatches in the matching pipeline by validating API responses directly against MySQL before they surfaced in user-facing results.",
+      "Established QA documentation and defect standards from scratch for a team with no prior QA function, including test repositories and reporting conventions.",
     ],
   },
   {
@@ -193,10 +194,11 @@ export const experiences: Experience[] = [
       "Agile/Scrum",
     ],
     achievements: [
-      "Tested healthcare and health insurance applications handling sensitive patient data, validating claims, payment, and member workflows against complex business rules and US healthcare regulation using SQL, including EDI 837/835 processing.",
-      "Automated smoke tests on an internal browser-based automation platform with XPath-based element location, contributing to 65% smoke coverage across the QA team.",
-      "Mentored junior QA engineers and led team test execution in the team lead's absence, keeping delivery and quality on track.",
-      "Created test requirements from business rules and system architecture, feeding risk assessment and release planning.",
+      "Tested payment model adjudication across bundled payments, capitation, and fee-for-service on an enterprise value-based care platform, validating episode construction, attribution, and reconciliation against contract terms.",
+      "Caught silent calculation defects in claims and payment processing, where errors throw no exception but carry regulatory and financial exposure, by deriving expected payment amounts independently in SQL before comparing them against system output.",
+      "Validated claims, member, and provider workflows against complex payer business rules and US healthcare regulation, including EDI 837/835 transaction processing on sensitive patient data.",
+      "Automated smoke tests on an internal browser-based automation platform using XPath-based element location, contributing to 65% smoke coverage across the QA team.",
+      "Mentored junior QA engineers and led team test execution during the team lead's absence, holding release timelines without escalation.",
     ],
   },
   {
@@ -207,8 +209,8 @@ export const experiences: Experience[] = [
     period: "Jan 2020 – Feb 2022",
     stack: ["ERP", "E-commerce", "SQL", "UAT", "Regression", "E2E", "JIRA"],
     achievements: [
-      "Performed UAT, regression, and end-to-end testing across 6+ ERP and e-commerce platforms in a high-transaction marketplace environment.",
-      "Improved end-user acceptance through structured validation and defect resolution, partnering with cross-functional teams to refine requirements and improve user experience.",
+      "Led UAT, regression, and end-to-end testing across 6+ ERP and e-commerce platforms in a high-transaction marketplace environment.",
+      "Partnered with product and engineering to tighten requirements before build, reducing rework and raising acceptance rates at UAT.",
     ],
   },
   {
@@ -224,7 +226,7 @@ export const experiences: Experience[] = [
       "Test Documentation",
     ],
     achievements: [
-      "Performed UAT, impact analysis, and scope validation, reducing scope creep and aligning delivery with stakeholder goals.",
+      "Ran UAT, impact analysis, and scope validation across client web projects, cutting scope creep by resolving requirement ambiguity before development started.",
     ],
   },
 ];
