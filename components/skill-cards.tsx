@@ -36,33 +36,30 @@ export function SkillCards() {
           description="From UI automation to API, performance, CI/CD, and AI evaluation, the tools I use to build confidence into every release."
         />
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 flex gap-4 overflow-x-auto pb-4 [scrollbar-width:thin]">
           {skillGroups.map((group, i) => {
             const Icon = iconMap[group.icon] ?? Cpu;
             return (
               <motion.div
                 key={group.category}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: (i % 4) * 0.06 }}
-                className="card group p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/30 hover:shadow-glow"
+                transition={{ duration: 0.4, delay: (i % 4) * 0.05 }}
+                className="card group w-[210px] shrink-0 p-4 transition-colors hover:border-brand-500/30"
               >
-                <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/10 text-brand-600 transition-colors group-hover:bg-brand-500 group-hover:text-white dark:text-brand-400">
-                    <Icon className="h-5 w-5" />
+                <div className="flex items-center gap-2.5">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500/10 text-brand-600 transition-colors group-hover:bg-brand-500 group-hover:text-white dark:text-brand-400">
+                    <Icon className="h-4 w-4" />
                   </span>
-                  <h3 className="font-display text-sm font-bold text-slate-900 dark:text-white">
+                  <h3 className="font-display text-[13px] font-bold text-slate-900 dark:text-white">
                     {group.category}
                   </h3>
                 </div>
 
-                <div className="mt-4 flex flex-wrap gap-2">
+                <div className="mt-3 flex flex-wrap gap-1.5">
                   {group.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="chip transition-colors group-hover:border-brand-500/20"
-                    >
+                    <span key={skill} className="chip !px-2 !py-0.5 !text-[11px]">
                       {skill}
                     </span>
                   ))}

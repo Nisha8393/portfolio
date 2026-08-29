@@ -1,8 +1,11 @@
 "use client";
 
+import { useState } from "react";
+import { Highlight, themes } from "prism-react-renderer";
 import {
   ArrowUpRight,
   ExternalLink,
+  FileCode2,
   FileSpreadsheet,
   Github,
   Layers,
@@ -12,9 +15,31 @@ import {
   ListChecks,
   Sparkles,
 } from "lucide-react";
-import { artifacts, repos } from "@/lib/proof";
+import { artifacts, repos, snippets } from "@/lib/proof";
 import { SectionHeading } from "./ui/section-heading";
 import { Reveal } from "./ui/reveal";
+import { cn } from "@/lib/utils";
+
+function CodeBlock({ code, language }: { code: string; language: string }) {
+  return (
+    <Highlight theme={themes.nightOwl} code={code.trim()} language={language}>
+      {({ style, tokens, getLineProps, getTokenProps }) => (
+        <pre
+          className="overflow-x-auto p-4 text-[12px] leading-relaxed"
+          style={{ ...style, background: "transparent", margin: 0 }}
+        >
+          {tokens.map((line, i) => (
+            <div key={i} {...getLineProps({ line })}>
+              {line.map((token, key) => (
+                <span key={key} {...getTokenProps({ token })} />
+              ))}
+            </div>
+          ))}
+        </pre>
+      )}
+    </Highlight>
+  );
+}
 
 function SubLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -25,6 +50,9 @@ function SubLabel({ children }: { children: React.ReactNode }) {
 }
 
 export function ProofOfAutomation() {
+  const [tab, setTab] = useState(0);
+  const active = snippets[tab];
+
   return (
     <section id="proof" className="section-pad">
       <div className="container-px">
@@ -79,6 +107,49 @@ export function ProofOfAutomation() {
               </a>
             </Reveal>
           ))}
+        </div>
+
+        {/* ---- Code with commentary (tabbed) ---- */}
+        <SubLabel>The code, with the reasoning</SubLabel>
+        <div className="mb-5 flex flex-wrap gap-2">
+          {snippets.map((s, i) => (
+            <button
+              key={s.filename}
+              type="button"
+              onClick={() => setTab(i)}
+              className={cn(
+                "rounded-lg px-3 py-1.5 font-mono text-[11px] transition-colors",
+                tab === i
+                  ? "bg-brand-600 text-white shadow-glow"
+                  : "border border-slate-200 text-slate-600 hover:border-slate-300 hover:text-slate-900 dark:border-white/10 dark:text-slate-300",
+              )}
+            >
+              {s.filename}
+            </button>
+          ))}
+        </div>
+        <div className="card overflow-hidden">
+          <div className="grid lg:grid-cols-[1.5fr_1fr]">
+            {/* Code */}
+            <div className="min-w-0 bg-[#011627]">
+              <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2">
+                <FileCode2 className="h-3.5 w-3.5 text-slate-400" />
+                <span className="font-mono text-[11px] text-slate-400">
+                  {active.filename}
+                </span>
+              </div>
+              <CodeBlock code={active.code} language={active.language} />
+            </div>
+            {/* Commentary */}
+            <div className="border-t border-slate-200 p-5 dark:border-white/10 lg:border-l lg:border-t-0">
+              <h3 className="font-display text-sm font-semibold text-slate-900 dark:text-white">
+                {active.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                {active.note}
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* ---- See it running ---- */}

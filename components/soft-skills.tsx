@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   SearchCheck,
   ScanEye,
@@ -22,23 +22,7 @@ const iconMap: Record<string, LucideIcon> = {
   flag: Flag,
 };
 
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.09 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 22 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
 export function SoftSkills() {
-  const reduce = useReducedMotion();
-
   return (
     <section id="strengths" className="section-pad">
       <div className="container-px">
@@ -48,56 +32,31 @@ export function SoftSkills() {
           description="Automation runs the checks. These are the skills that decide whether a check catches anything."
         />
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-          className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-        >
+        <div className="mt-10 flex gap-4 overflow-x-auto pb-4 [scrollbar-width:thin]">
           {softSkills.map((skill, i) => {
             const Icon = iconMap[skill.icon] ?? SearchCheck;
             return (
               <motion.div
                 key={skill.title}
-                variants={item}
-                whileHover={{ y: -6 }}
-                transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                className="card group relative overflow-hidden p-6 hover:shadow-glow"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.4, delay: (i % 3) * 0.05 }}
+                className="card group w-[250px] shrink-0 p-5 transition-colors hover:border-brand-500/30"
               >
-                {/* animated corner glow on hover */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-brand-500/15 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
-                />
-
-                <motion.span
-                  animate={reduce ? undefined : { y: [0, -5, 0] }}
-                  transition={
-                    reduce
-                      ? undefined
-                      : {
-                          duration: 3.6,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: i * 0.3,
-                        }
-                  }
-                  className="relative inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-500/12 text-brand-600 ring-1 ring-brand-500/20 transition-colors duration-300 group-hover:bg-brand-500/20 dark:text-brand-400"
-                >
-                  <Icon className="h-5 w-5" />
-                </motion.span>
-
-                <h3 className="mt-4 font-display text-lg font-semibold text-slate-900 dark:text-white">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500/12 text-brand-600 ring-1 ring-brand-500/20 transition-colors group-hover:bg-brand-500/20 dark:text-brand-400">
+                  <Icon className="h-4 w-4" />
+                </span>
+                <h3 className="mt-3 font-display text-sm font-bold text-slate-900 dark:text-white">
                   {skill.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                <p className="mt-1.5 text-[13px] leading-relaxed text-slate-600 dark:text-slate-300">
                   {skill.body}
                 </p>
               </motion.div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

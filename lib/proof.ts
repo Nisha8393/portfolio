@@ -18,8 +18,6 @@ export const repos: Repo[] = [
     description:
       "A Playwright suite against a live storefront: smoke, regression, an end-to-end purchase journey, WCAG accessibility scans, and unhappy-path tests that fake backend failures. Every spec is traceable to a manual test case, coverage is computed rather than claimed, and a pre-flight check fails a bot-blocked run in seconds instead of timing out.",
     url: "https://github.com/Nisha8393/Automation-Exercise",
-    badge:
-      "https://github.com/Nisha8393/Automation-Exercise/actions/workflows/playwright.yml/badge.svg",
     meta: ["a11y · unhappy-path · e2e", "Traceable to a test-case sheet", "Computed coverage · CI"],
   },
   {
@@ -41,53 +39,44 @@ export type Snippet = {
 
 export const snippets: Snippet[] = [
   {
-    title: "Every test traces to a written case",
-    filename: "@CASE-ID tags",
+    title: "Two fixture scopes on purpose",
+    filename: "fixtures/base.js",
     language: "javascript",
-    code: `// Each spec carries the manual case ID it covers, verbatim from the
-// test-case workbook, so coverage is computed from the suite, not claimed.
-test("Login with valid credentials", { tag: "@R-AUTH-07" }, async () => {
-  /* ... */
-});
+    code: `export const test = base.extend({
+  // ISOLATED (test-scoped): anything that mutates state.
+  // Built on Playwright's own \`page\`, not a hand-rolled browser.newContext(),
+  // so test.use({ storageState }), the project viewport and trace all apply.
+  isolatedPage: async ({ page }, use) => {
+    await blockAdsAndTrackers(page); // a live third-party site can't add flake
+    await page.goto(BASE_URL);
+    await use(page);
+  },
 
-test("Home has no new WCAG 2.1 A/AA violations", { tag: "@A11Y-SCAN-01" }, /* ... */);
+  // Every Page Object injected: specs never new() anything.
+  header: async ({ isolatedPage }, use) =>
+    use(new HeaderSection(isolatedPage)),
 
-// One test can cover several cases at once:
-test("Filter by Polo brand", { tag: ["@R-PROD-17", "@R-PROD-22"] }, /* ... */);
-
-// The rule: a spec is tagged ONLY when its assertions actually establish
-// that case's Expected Result. Partial coverage stays untagged, because
-// an inflated number is worse than no number.`,
-    note: "The traceability layer of the framework. Every automated test maps back to a written case, and a coverage step reconciles the tags against the workbook in both directions, warning on any drift, so the coverage number is always earned rather than asserted.",
+  // SHARED (worker-scoped): read-only smoke checks reuse one page.
+  sharedPage: [async ({ sharedContext }, use) => {
+    /* ... */
+  }, { scope: "worker" }],
+});`,
+    note: "An isolated context for state-mutating tests, and a worker-shared page for fast read-only smoke checks. The isolated one is built on Playwright's own `page` fixture rather than a hand-rolled newContext(): a hand-rolled context silently ignores storageState, the project viewport and trace settings, so this way they all just work.",
   },
   {
-    title: "Accessibility with a baseline, not zero-tolerance",
-    filename: "a11y/accessibility.spec.js",
+    title: "Log in once, reuse the session",
+    filename: "auth.setup.js + authState.js",
     language: "javascript",
-    code: `// A live third-party site with real a11y debt: asserting "zero violations"
-// would just paint the suite red. Each page carries a baseline of known
-// rule IDs, so only a NEW critical or serious violation fails.
-const PAGES = [
-  { name: "Home", path: "/", baseline: ["button-name", "color-contrast", "link-name"] },
-  { name: "Contact Us", path: "/contact_us", baseline: ["button-name", "color-contrast", "label"] },
-];
-
-const { violations } = await new AxeBuilder({ page: isolatedPage })
-  .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
-  .analyze();
-
-// Attach the full scan every run so the baseline can be reviewed and trimmed.
-await testInfo.attach("axe-" + name + ".json", {
-  body: JSON.stringify(violations, null, 2),
-  contentType: "application/json",
+    code: `// Runs once per run as a project dependency: log in, then save the session.
+setup("authenticate", async ({ page }) => {
+  await loginPage.login(email, password);
+  await expect(header.loggedInUserText(name)).toBeVisible(); // assert before saving
+  await page.context().storageState({ path: STORAGE_STATE });
 });
 
-const regressions = violations
-  .filter((v) => ["critical", "serious"].includes(v.impact))
-  .filter((v) => !baseline.includes(v.id));
-
-expect(regressions, "New accessibility violations found").toEqual([]);`,
-    note: "The site has pre-existing accessibility debt, so a hard zero would be pure noise. A per-page baseline of known rule IDs means only a new critical or serious violation fails the build, and the full axe report is attached every run so the baseline can be trimmed over time.",
+// Any spec that needs an account opts in, no re-login through the UI:
+test.use({ storageState: STORAGE_STATE });`,
+    note: "The setup project signs in once and saves the session; specs opt in with storageState instead of logging in through the UI each time. It asserts the login worked before saving, so a logged-out state can't silently break every dependent test later. The e2e journey still logs in through the UI on purpose, since testing that path is the point.",
   },
   {
     title: "Unhappy paths, not just the happy one",
@@ -118,19 +107,17 @@ test(
     title: "A self-cleaning, chained API lifecycle",
     filename: "AutomationExercise (Postman)",
     language: "javascript",
-    code: `// Pre-request: a unique user per run, so the suite is idempotent
-var ts = new Date().getTime();
-pm.environment.set("dynamic_email", "testuser_" + ts + "@example.com");
+    code: `// Pre-request: a unique user per run, so the suite is idempotent.
+pm.environment.set("dynamic_email", "testuser_" + Date.now() + "@example.com");
 
 // ...drives a full create -> read -> update -> delete lifecycle...
 
 // A later request asserts the created user actually persisted:
-pm.test("Returned email matches queried email", function () {
-  var body = pm.response.json();
-  pm.expect(body.user.email)
+pm.test("Returned email matches queried email", () => {
+  pm.expect(pm.response.json().user.email)
     .to.eql(pm.environment.get("dynamic_email"));
 });`,
-    note: "A per-run unique email drives a create→read→update→delete chain, so every run is self-cleaning on a shared public API. Downstream requests assert against values captured upstream, real chained verification, not isolated 200-checks.",
+    note: "A per-run unique email drives a create → read → update → delete chain, so every run is self-cleaning on a shared public API. Downstream requests assert against values captured upstream: real chained verification, not isolated 200-checks.",
   },
 ];
 
