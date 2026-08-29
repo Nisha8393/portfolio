@@ -12,6 +12,8 @@ import {
   Boxes,
   FileBarChart,
   GitBranch,
+  ListChecks,
+  Settings2,
 } from "lucide-react";
 import { artifacts, repos, snippets } from "@/lib/proof";
 import { SectionHeading } from "./ui/section-heading";
@@ -220,38 +222,51 @@ export function ProofOfAutomation() {
   );
 }
 
-function DiagramBox({
-  icon,
-  title,
-  sub,
-  className = "",
-}: {
-  icon: React.ReactNode;
-  title: string;
-  sub: string;
-  className?: string;
-}) {
+function Connector() {
   return (
-    <div
-      className={`rounded-xl border border-brand-500/20 bg-brand-500/[0.06] p-4 text-center dark:bg-brand-500/10 ${className}`}
-    >
-      <div className="mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500/15 text-brand-600 dark:text-brand-400">
-        {icon}
-      </div>
-      <p className="font-display text-sm font-semibold text-slate-900 dark:text-white">
-        {title}
-      </p>
-      <p className="mt-1 text-xs leading-snug text-slate-500 dark:text-slate-400">
-        {sub}
-      </p>
+    <div className="flex justify-center py-1.5" aria-hidden>
+      <div className="h-5 w-px bg-gradient-to-b from-brand-500/50 to-brand-500/10" />
     </div>
   );
 }
 
-function Connector() {
+function Layer({
+  icon,
+  label,
+  title,
+  sub,
+  emphasis = false,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  title: string;
+  sub: string;
+  emphasis?: boolean;
+}) {
   return (
-    <div className="flex justify-center py-2" aria-hidden>
-      <div className="h-6 w-px bg-gradient-to-b from-brand-500/50 to-brand-500/10" />
+    <div
+      className={`rounded-xl border p-4 ${
+        emphasis
+          ? "border-brand-500/40 bg-brand-500/[0.12] dark:bg-brand-500/15"
+          : "border-brand-500/20 bg-brand-500/[0.06] dark:bg-brand-500/10"
+      }`}
+    >
+      <div className="flex items-start gap-3">
+        <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-500/15 text-brand-600 dark:text-brand-400">
+          {icon}
+        </div>
+        <div className="min-w-0">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-600/80 dark:text-brand-400/80">
+            {label}
+          </p>
+          <p className="font-display text-sm font-semibold text-slate-900 dark:text-white">
+            {title}
+          </p>
+          <p className="mt-1 text-xs leading-snug text-slate-500 dark:text-slate-400">
+            {sub}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -259,47 +274,68 @@ function Connector() {
 function ArchitectureDiagram() {
   return (
     <div className="mx-auto max-w-3xl">
-      {/* Shared core */}
-      <DiagramBox
-        icon={<Layers className="h-5 w-5" />}
-        title="Shared fixtures · test data · generators"
-        sub="Auth, unique data per run, and Page Objects / API clients injected as fixtures, no test depends on another test's leftovers"
+      {/* Traceability spine — owns the whole framework */}
+      <Layer
+        emphasis
+        icon={<ListChecks className="h-5 w-5" />}
+        label="Traceability"
+        title="Test-case sheet · @CASE-ID tags · computed coverage"
+        sub="Every spec maps to a manual case, and the sheet and the specs reconcile both ways, so coverage is computed rather than claimed."
       />
-
       <Connector />
 
-      {/* Two suites */}
+      {/* Suites */}
+      <Layer
+        icon={<Boxes className="h-5 w-5" />}
+        label="Suites"
+        title="smoke · regression · e2e · a11y · unhappy-path"
+        sub="Tag-filtered, independent of folders. UI in Playwright, API in Postman / Newman."
+      />
+      <Connector />
+
+      {/* Core */}
+      <Layer
+        icon={<Layers className="h-5 w-5" />}
+        label="Core"
+        title="Fixtures (isolated + shared) · Page Objects · data generators · auth reuse"
+        sub="Injected as fixtures, so no test depends on another test's leftover state."
+      />
+      <Connector />
+
+      {/* Config + pre-flight gate */}
+      <Layer
+        icon={<Settings2 className="h-5 w-5" />}
+        label="Config"
+        title="playwright.config · secrets / .env · storageState · pre-flight gate"
+        sub="A pre-flight check fails a bot-blocked run in seconds instead of timing out."
+      />
+      <Connector />
+
+      {/* CI gate */}
+      <Layer
+        emphasis
+        icon={<GitBranch className="h-5 w-5" />}
+        label="CI gate"
+        title="GitHub Actions: on every push · PR"
+        sub="secret scan → lint → coverage → run, cancelling superseded runs and caching browsers."
+      />
+      <Connector />
+
+      {/* Two outputs, two questions */}
       <div className="grid gap-4 sm:grid-cols-2">
-        <DiagramBox
-          icon={<Boxes className="h-5 w-5" />}
-          title="UI suite"
-          sub="Page Objects · smoke · regression · e2e"
+        <Layer
+          icon={<FileBarChart className="h-5 w-5" />}
+          label="Run report"
+          title="What happened"
+          sub="Playwright HTML and a custom Excel summary; traces and screenshots on failure."
         />
-        <DiagramBox
-          icon={<Boxes className="h-5 w-5" />}
-          title="API suite"
-          sub="Thin clients · chained lifecycle · schema checks"
+        <Layer
+          icon={<FileSpreadsheet className="h-5 w-5" />}
+          label="Coverage report"
+          title="How much is automated"
+          sub="A property of the suite: per feature, with the backlog of what isn't automated yet."
         />
       </div>
-
-      <Connector />
-
-      {/* Reports */}
-      <DiagramBox
-        icon={<FileBarChart className="h-5 w-5" />}
-        title="One report: HTML + custom Excel"
-        sub="Traces & screenshots retained on failure; a stakeholder-friendly Excel summary with a pass/fail chart"
-      />
-
-      <Connector />
-
-      {/* CI */}
-      <DiagramBox
-        icon={<GitBranch className="h-5 w-5" />}
-        title="GitHub Actions: push · PR · nightly"
-        sub="Browser caching, concurrency cancellation, secrets from the vault, artifacts uploaded every run"
-        className="border-brand-500/40 bg-brand-500/[0.12] dark:bg-brand-500/15"
-      />
     </div>
   );
 }

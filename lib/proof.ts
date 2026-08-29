@@ -16,11 +16,11 @@ export const repos: Repo[] = [
   {
     name: "Automation-Exercise",
     description:
-      "Playwright UI suite covering smoke, regression, and e2e against a live demo storefront. Accessibility-first Page Objects, dual-scope fixtures, tag-driven suites, a custom Excel reporter, and a GitHub Actions pipeline that runs nightly.",
+      "A Playwright suite against a live storefront: smoke, regression, an end-to-end purchase journey, WCAG accessibility scans, and unhappy-path tests that fake backend failures. Every spec is traceable to a manual test case, coverage is computed rather than claimed, and a pre-flight check fails a bot-blocked run in seconds instead of timing out.",
     url: "https://github.com/Nisha8393/Automation-Exercise",
     badge:
       "https://github.com/Nisha8393/Automation-Exercise/actions/workflows/playwright.yml/badge.svg",
-    meta: ["smoke · regression · e2e", "Playwright · JavaScript", "Nightly CI + report"],
+    meta: ["a11y · unhappy-path · e2e", "Traceable to a test-case sheet", "Computed coverage · CI"],
   },
   {
     name: "Automation-ExerciseAPI",
@@ -72,33 +72,25 @@ export const snippets: Snippet[] = [
     filename: "fixtures/base.js",
     language: "javascript",
     code: `export const test = base.extend({
-  // ISOLATED (test-scoped): for anything that mutates state
-  isolatedPage: async ({ browser }, use) => {
-    const context = await browser.newContext();
-    const page = await context.newPage();
-
-    // Block ads/trackers so the live site stays deterministic
-    await page.route(
-      /googleads|doubleclick|analytics|ads\\./,
-      (route) => route.abort(),
-    );
-
+  // ISOLATED (test-scoped): anything that mutates state.
+  // Built on Playwright's own \`page\`, not a hand-rolled browser.newContext(),
+  // so test.use({ storageState }), the project viewport and trace all apply.
+  isolatedPage: async ({ page }, use) => {
+    await blockAdsAndTrackers(page); // a live third-party site can't add flake
     await page.goto(BASE_URL);
     await use(page);
-    await context.close();
   },
 
-  // Every Page Object injected: specs never new() anything
-  header: async ({ isolatedPage }, use) => {
-    await use(new HeaderSection(isolatedPage));
-  },
+  // Every Page Object injected: specs never new() anything.
+  header: async ({ isolatedPage }, use) =>
+    use(new HeaderSection(isolatedPage)),
 
-  // SHARED (worker-scoped): read-only smoke checks reuse one page
+  // SHARED (worker-scoped): read-only smoke checks reuse one page.
   sharedPage: [async ({ sharedContext }, use) => {
     /* ... */
   }, { scope: "worker" }],
 });`,
-    note: "An isolated context for state-mutating tests; a worker-shared page for fast read-only smoke checks. Ad and tracker requests are aborted so a live third-party site can't make the suite flaky.",
+    note: "An isolated context for state-mutating tests, and a worker-shared page for fast read-only smoke checks. The isolated one is built on Playwright's own `page` fixture rather than a hand-rolled newContext(): a hand-rolled context silently ignores storageState, the project viewport and trace settings, so this way they all just work.",
   },
   {
     title: "A self-cleaning, chained API lifecycle",
@@ -133,7 +125,7 @@ export const artifacts: ProofArtifact[] = [
     kind: "report",
     title: "Live Playwright HTML report",
     caption:
-      "The real, clickable test report: browse every suite, timing, and result. Green wall with one honest red.",
+      "The real, clickable test report: browse every suite, its timing, and its result, run against a live third-party site.",
     href: "/proof/playwright-report.html",
     src: "/proof/report-one-red.png",
   },
