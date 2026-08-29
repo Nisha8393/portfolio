@@ -13,7 +13,7 @@ import {
   FileBarChart,
   GitBranch,
   ListChecks,
-  Settings2,
+  Sparkles,
 } from "lucide-react";
 import { artifacts, repos, snippets } from "@/lib/proof";
 import { SectionHeading } from "./ui/section-heading";
@@ -211,7 +211,7 @@ export function ProofOfAutomation() {
         </div>
 
         {/* ---- Architecture ---- */}
-        <SubLabel>How the framework fits together</SubLabel>
+        <SubLabel>How I architect a QA framework</SubLabel>
         <Reveal>
           <div className="card p-6 sm:p-10">
             <ArchitectureDiagram />
@@ -274,68 +274,68 @@ function Layer({
 function ArchitectureDiagram() {
   return (
     <div className="mx-auto max-w-3xl">
-      {/* Traceability spine — owns the whole framework */}
+      {/* Strategy & traceability — top of the funnel */}
       <Layer
         emphasis
         icon={<ListChecks className="h-5 w-5" />}
-        label="Traceability"
-        title="Test-case sheet · @CASE-ID tags · computed coverage"
-        sub="Every spec maps to a manual case, and the sheet and the specs reconcile both ways, so coverage is computed rather than claimed."
+        label="Strategy & traceability"
+        title="Risk-based test design · test-case management · coverage traceability"
+        sub="What to test and why, with every automated check mapped back to a written case so coverage is measured, not guessed."
       />
       <Connector />
 
-      {/* Suites */}
+      {/* Test layers */}
       <Layer
         icon={<Boxes className="h-5 w-5" />}
-        label="Suites"
-        title="smoke · regression · e2e · a11y · unhappy-path"
-        sub="Tag-filtered, independent of folders. UI in Playwright, API in Postman / Newman."
+        label="Test layers"
+        title="API / contract · UI / e2e · accessibility · performance · visual"
+        sub="The right check at the right level, tag-filtered and run independently of folders."
       />
       <Connector />
 
-      {/* Core */}
+      {/* Framework core */}
       <Layer
         icon={<Layers className="h-5 w-5" />}
-        label="Core"
-        title="Fixtures (isolated + shared) · Page Objects · data generators · auth reuse"
-        sub="Injected as fixtures, so no test depends on another test's leftover state."
+        label="Framework core"
+        title="Fixtures / DI · Page Objects · API clients · test-data management · env config · secrets · service mocking"
+        sub="The shared machinery every suite is built on, so no test depends on another test's leftover state."
       />
       <Connector />
 
-      {/* Config + pre-flight gate */}
-      <Layer
-        icon={<Settings2 className="h-5 w-5" />}
-        label="Config"
-        title="playwright.config · secrets / .env · storageState · pre-flight gate"
-        sub="A pre-flight check fails a bot-blocked run in seconds instead of timing out."
-      />
-      <Connector />
-
-      {/* CI gate */}
-      <Layer
-        emphasis
-        icon={<GitBranch className="h-5 w-5" />}
-        label="CI gate"
-        title="GitHub Actions: on every push · PR"
-        sub="secret scan → lint → coverage → run, cancelling superseded runs and caching browsers."
-      />
-      <Connector />
-
-      {/* Two outputs, two questions */}
+      {/* CI gate + observability, side by side */}
       <div className="grid gap-4 sm:grid-cols-2">
         <Layer
-          icon={<FileBarChart className="h-5 w-5" />}
-          label="Run report"
-          title="What happened"
-          sub="Playwright HTML and a custom Excel summary; traces and screenshots on failure."
+          icon={<GitBranch className="h-5 w-5" />}
+          label="CI/CD quality gate"
+          title="Lint · secret scan · parallel · merge gating"
+          sub="Every merge produces a pass/fail gate, with superseded runs cancelled and browsers cached."
         />
         <Layer
-          icon={<FileSpreadsheet className="h-5 w-5" />}
-          label="Coverage report"
-          title="How much is automated"
-          sub="A property of the suite: per feature, with the backlog of what isn't automated yet."
+          icon={<FileBarChart className="h-5 w-5" />}
+          label="Reporting & observability"
+          title="Run + coverage reports · trends · Jira / Zephyr · log triage"
+          sub="Two questions kept apart: did this run pass, and how much is automated."
         />
       </div>
+      <Connector />
+
+      {/* AI edge */}
+      <Layer
+        emphasis
+        icon={<Sparkles className="h-5 w-5" />}
+        label="AI / LLM quality"
+        title="Eval harness for non-deterministic output · AI-assisted generation (Claude Code + MCP)"
+        sub="Testing features that have no single correct answer, and using AI to expand coverage as a reviewed first draft."
+      />
+
+      {/* Honest bridge: what the linked demo covers vs the wider practice */}
+      <p className="mt-6 text-center text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+        <span className="font-semibold text-slate-600 dark:text-slate-300">
+          In the linked demo:
+        </span>{" "}
+        UI, accessibility, traceability and CI. API, performance and AI quality
+        come from my professional work.
+      </p>
     </div>
   );
 }

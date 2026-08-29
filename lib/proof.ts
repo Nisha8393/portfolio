@@ -41,56 +41,78 @@ export type Snippet = {
 
 export const snippets: Snippet[] = [
   {
-    title: "Accessibility-first Page Object",
-    filename: "pages/header.page.js",
+    title: "Every test traces to a written case",
+    filename: "@CASE-ID tags",
     language: "javascript",
-    code: `export default class HeaderSection {
-  constructor(page) {
-    this.page = page;
-    this.header = this.page.getByRole("banner");
+    code: `// Each spec carries the manual case ID it covers, verbatim from the
+// test-case workbook, so coverage is computed from the suite, not claimed.
+test("Login with valid credentials", { tag: "@R-AUTH-07" }, async () => {
+  /* ... */
+});
 
-    // Logo alt text changes when logged in, so scope by class
-    this.navMenu = this.header.getByRole("list");
+test("Home has no new WCAG 2.1 A/AA violations", { tag: "@A11Y-SCAN-01" }, /* ... */);
 
-    // Parameterized factory: any nav link by its visible text
-    this.navLink = (text) =>
-      this.navMenu.getByRole("link", { name: text });
+// One test can cover several cases at once:
+test("Filter by Polo brand", { tag: ["@R-PROD-17", "@R-PROD-22"] }, /* ... */);
 
-    this.loggedInUserText = (user) =>
-      this.navMenu.getByText(new RegExp(\`Logged in as.*\${user}\`, "i"));
-  }
-
-  async clickHome() {
-    await expect(this.header).toBeVisible();
-    await this.homeLink.click();
-  }
-}`,
-    note: "Role/label locators scoped to a container, with parameterized factories for repeated patterns. CSS is a fallback used only where the DOM offers no accessible handle, and each fallback carries a comment saying why.",
+// The rule: a spec is tagged ONLY when its assertions actually establish
+// that case's Expected Result. Partial coverage stays untagged, because
+// an inflated number is worse than no number.`,
+    note: "The traceability layer of the framework. Every automated test maps back to a written case, and a coverage step reconciles the tags against the workbook in both directions, warning on any drift, so the coverage number is always earned rather than asserted.",
   },
   {
-    title: "Two fixture scopes on purpose",
-    filename: "fixtures/base.js",
+    title: "Accessibility with a baseline, not zero-tolerance",
+    filename: "a11y/accessibility.spec.js",
     language: "javascript",
-    code: `export const test = base.extend({
-  // ISOLATED (test-scoped): anything that mutates state.
-  // Built on Playwright's own \`page\`, not a hand-rolled browser.newContext(),
-  // so test.use({ storageState }), the project viewport and trace all apply.
-  isolatedPage: async ({ page }, use) => {
-    await blockAdsAndTrackers(page); // a live third-party site can't add flake
-    await page.goto(BASE_URL);
-    await use(page);
+    code: `// A live third-party site with real a11y debt: asserting "zero violations"
+// would just paint the suite red. Each page carries a baseline of known
+// rule IDs, so only a NEW critical or serious violation fails.
+const PAGES = [
+  { name: "Home", path: "/", baseline: ["button-name", "color-contrast", "link-name"] },
+  { name: "Contact Us", path: "/contact_us", baseline: ["button-name", "color-contrast", "label"] },
+];
+
+const { violations } = await new AxeBuilder({ page: isolatedPage })
+  .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+  .analyze();
+
+// Attach the full scan every run so the baseline can be reviewed and trimmed.
+await testInfo.attach("axe-" + name + ".json", {
+  body: JSON.stringify(violations, null, 2),
+  contentType: "application/json",
+});
+
+const regressions = violations
+  .filter((v) => ["critical", "serious"].includes(v.impact))
+  .filter((v) => !baseline.includes(v.id));
+
+expect(regressions, "New accessibility violations found").toEqual([]);`,
+    note: "The site has pre-existing accessibility debt, so a hard zero would be pure noise. A per-page baseline of known rule IDs means only a new critical or serious violation fails the build, and the full axe report is attached every run so the baseline can be trimmed over time.",
   },
+  {
+    title: "Unhappy paths, not just the happy one",
+    filename: "unhappyPath/networkFailure.spec.js",
+    language: "javascript",
+    code: `// Every other spec drives the happy path; these fake what a user hits on
+// a bad connection by intercepting the site's own ajax. This one found a bug.
+test(
+  "Add to cart with a 500 - nothing is added and no modal appears",
+  { tag: "@R-NET-01" },
+  async ({ isolatedPage, home, header, viewCartPage }) => {
+    await isolatedPage.route("**/add_to_cart/**", (route) =>
+      route.fulfill({ status: 500, body: "" }),
+    );
 
-  // Every Page Object injected: specs never new() anything.
-  header: async ({ isolatedPage }, use) =>
-    use(new HeaderSection(isolatedPage)),
+    await home.addProductToCart("Blue Top");
 
-  // SHARED (worker-scoped): read-only smoke checks reuse one page.
-  sharedPage: [async ({ sharedContext }, use) => {
-    /* ... */
-  }, { scope: "worker" }],
-});`,
-    note: "An isolated context for state-mutating tests, and a worker-shared page for fast read-only smoke checks. The isolated one is built on Playwright's own `page` fixture rather than a hand-rolled newContext(): a hand-rolled context silently ignores storageState, the project viewport and trace settings, so this way they all just work.",
+    // Finding: the site shows no modal, adds nothing, and gives the user
+    // no error at all. The click silently fails. This test pins it down.
+    await expect(home.cartModal).toBeHidden();
+    await header.clickCart();
+    expect(await viewCartPage.isCartEmpty()).toBe(true);
+  },
+);`,
+    note: "These intercept the site's ajax to simulate a 500, an aborted request, and a slow response. Faking a failed add-to-cart surfaced a real defect: the site adds nothing and shows no error, so the click silently fails. The test locks that behaviour in, so a future change has to address it deliberately.",
   },
   {
     title: "A self-cleaning, chained API lifecycle",
