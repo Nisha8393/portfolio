@@ -49,9 +49,9 @@ export function RunTestsBanner() {
   };
 
   return (
-    <div className="card overflow-hidden">
+    <div className="card flex h-full min-h-[440px] flex-col overflow-hidden">
       {/* header */}
-      <div className="flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-4 py-2.5 dark:border-white/10">
+      <div className="flex shrink-0 items-center gap-2 border-b border-slate-200 bg-slate-50 px-4 py-2.5 dark:border-white/10">
         <span className="h-2.5 w-2.5 rounded-full bg-rose-400/80" />
         <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
         <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
@@ -68,7 +68,7 @@ export function RunTestsBanner() {
       </div>
 
       {status === "idle" ? (
-        <div className="px-4 py-10 text-center">
+        <div className="flex flex-1 flex-col items-center justify-center px-4 py-10 text-center">
           <p className="mb-5 font-mono text-[12px] text-slate-400">
             $ npm run test:candidate
           </p>
@@ -84,7 +84,7 @@ export function RunTestsBanner() {
         <>
           <div
             ref={scrollRef}
-            className="h-80 overflow-y-auto px-4 py-3 font-mono text-[12px] leading-relaxed"
+            className="min-h-0 flex-1 overflow-y-auto px-4 py-3 font-mono text-[12px] leading-relaxed"
           >
             <p className="text-slate-400">$ npm run test:candidate</p>
             {LINES.slice(0, count).map((line, i) =>
@@ -111,7 +111,7 @@ export function RunTestsBanner() {
           </div>
 
           {status === "done" && (
-            <div className="flex items-center justify-between border-t border-slate-200 px-4 py-3 dark:border-white/10">
+            <div className="flex shrink-0 items-center justify-between border-t border-slate-200 px-4 py-3 dark:border-white/10">
               <span className="font-mono text-[11.5px] font-semibold text-brand-700 dark:text-brand-300">
                 ✓ {TOTAL} passed · 0 failed
               </span>
