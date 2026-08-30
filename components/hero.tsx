@@ -37,7 +37,7 @@ export function Hero() {
       />
 
       <div className="container-px">
-        <div className="grid items-stretch gap-12 lg:grid-cols-[1.3fr_0.7fr] lg:gap-10">
+        <div className="grid items-start gap-12 lg:grid-cols-[1.3fr_0.7fr] lg:gap-10">
           {/* Left: copy */}
           <div>
             <motion.div
@@ -106,7 +106,7 @@ export function Hero() {
 
           {/* Right: interactive "run my tests" banner */}
           <div className="lg:pl-4">
-            <div className="relative h-full">
+            <div className="relative">
               <div
                 aria-hidden
                 className="pointer-events-none absolute -inset-8 -z-10 rounded-[2.5rem] bg-brand-500/10 blur-3xl dark:bg-brand-500/20"
