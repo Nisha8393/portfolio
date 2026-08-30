@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   CheckCheck,
   Cpu,
@@ -36,37 +35,37 @@ export function SkillCards() {
           description="From UI automation to API, performance, CI/CD, and AI evaluation, the tools I use to build confidence into every release."
         />
 
-        <div className="mt-10 flex gap-4 overflow-x-auto pb-4 [scrollbar-width:thin]">
-          {skillGroups.map((group, i) => {
-            const Icon = iconMap[group.icon] ?? Cpu;
-            return (
-              <motion.div
-                key={group.category}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.4, delay: (i % 4) * 0.05 }}
-                className="card group w-[210px] shrink-0 p-4 transition-colors hover:border-brand-500/30"
-              >
-                <div className="flex items-center gap-2.5">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500/10 text-brand-600 transition-colors group-hover:bg-brand-500 group-hover:text-white dark:text-brand-400">
-                    <Icon className="h-4 w-4" />
-                  </span>
-                  <h3 className="font-display text-[13px] font-bold text-slate-900 dark:text-white">
-                    {group.category}
-                  </h3>
-                </div>
-
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {group.skills.map((skill) => (
-                    <span key={skill} className="chip !px-2 !py-0.5 !text-[11px]">
-                      {skill}
+        {/* Auto-scrolling marquee: pauses on hover, falls back to scroll for reduced motion */}
+        <div className="group relative mt-10 overflow-hidden motion-reduce:overflow-x-auto motion-reduce:pb-4 [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)] motion-reduce:[mask-image:none]">
+          <div className="flex w-max animate-marquee will-change-transform group-hover:[animation-play-state:paused] motion-reduce:animate-none">
+            {[...skillGroups, ...skillGroups].map((group, i) => {
+              const Icon = iconMap[group.icon] ?? Cpu;
+              return (
+                <div
+                  key={`${group.category}-${i}`}
+                  aria-hidden={i >= skillGroups.length}
+                  className="card group/card mr-4 w-[210px] shrink-0 p-4 transition-colors hover:border-brand-500/30"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500/10 text-brand-600 transition-colors group-hover/card:bg-brand-500 group-hover/card:text-white dark:text-brand-400">
+                      <Icon className="h-4 w-4" />
                     </span>
-                  ))}
+                    <h3 className="font-display text-[13px] font-bold text-slate-900 dark:text-white">
+                      {group.category}
+                    </h3>
+                  </div>
+
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {group.skills.map((skill) => (
+                      <span key={skill} className="chip !px-2 !py-0.5 !text-[11px]">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </motion.div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
